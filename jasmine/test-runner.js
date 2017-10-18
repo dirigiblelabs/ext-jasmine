@@ -11,22 +11,20 @@
 /* eslint-env node, dirigible */
 "use strict";
 exports.run = function(env, config){
+	
 	config = config || {};
 	
-	var console_reporter,svc_reporter;
+	var svc_reporter;
 	
-	if(!config["disable-service-reporter"])
+	if(!config["disable-service-reporter"]){
 		svc_reporter = require("jasmine/reporters/svc-reporter");
-	if(!env){
-		var j = require("jasmine/jasmine");
-		var jasmine = j.core(j);
-		env = jasmine.getEnv();		
-	} else {
-		if(svc_reporter)
-			svc_reporter.env = env;
+		svc_reporter.env = env;
 	}
 	if(!config["disable-console-reporter"]){
-		console_reporter = require("jasmine/reporters/console-reporter");
+		var console_reporter = require("jasmine/reporters/console-reporter");
+		if(config["prettyPrint"] !== undefined)
+			console_reporter.settings["prettyPrint"] = config["prettyPrint"];
+		console.error(">>> " + console_reporter.settings["prettyPrint"])
 		env.addReporter(console_reporter.settings);
 	}
 	

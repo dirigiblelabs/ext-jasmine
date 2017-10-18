@@ -24,7 +24,6 @@ exports.run = function(env, config){
 		var console_reporter = require("jasmine/reporters/console-reporter");
 		if(config["prettyPrint"] !== undefined)
 			console_reporter.settings["prettyPrint"] = config["prettyPrint"];
-		console.error(">>> " + console_reporter.settings["prettyPrint"])
 		env.addReporter(console_reporter.settings);
 	}
 	

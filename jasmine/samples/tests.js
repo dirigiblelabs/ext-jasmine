@@ -1,13 +1,19 @@
+/*******************************************************************************
+ * Copyright (c) 2017 SAP and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * Contributors:
+ * SAP - initial API and implementation
+ *******************************************************************************/
+ 
 /* eslint-env node, dirigible */
 var j = require("jasmine/jasmine");
-var console_reporter = require("jasmine/reporters/console-reporter");
-
 var jasmine = j.core(j);
 var env = jasmine.getEnv();
-
 var $$j = j.interface(jasmine, env);
 
-env.addReporter(console_reporter.jasmine_console_reporter);
 
 $$j.describe("A suite is just a function", function() {
     
@@ -22,5 +28,4 @@ $$j.describe("A suite is just a function", function() {
 
 });
 
-//Service these tests
-require("jasmine/test-runner").service(env);
+require("jasmine/test-runner").run(env);

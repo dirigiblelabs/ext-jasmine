@@ -1,6 +1,14 @@
-/* globals $ */
+/*******************************************************************************
+ * Copyright (c) 2017 SAP and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * Contributors:
+ * SAP - initial API and implementation
+ *******************************************************************************/
+ 
 /* eslint-env node, dirigible */
-
 (function() {
 	'use strict';
 	
@@ -99,7 +107,12 @@
 	};
 
 	exports.forMedia = function(media){
-		var _env = this.env || require('core/v3/globals').get('JasmineEnv');
+		var _env = this.env;
+		if(!_env) {
+			var j = require("jasmine/jasmine");
+			var jasmine = j.core(j);
+			_env = jasmine.getEnv();					
+		}
 		if(media === 'json')
 			_env.addReporter(jsonReporter);
 	};	

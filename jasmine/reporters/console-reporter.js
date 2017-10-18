@@ -1,20 +1,43 @@
-/* globals $ */
+/*******************************************************************************
+ * Copyright (c) 2017 SAP and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * Contributors:
+ * SAP - initial API and implementation
+ *******************************************************************************/
+ 
 /* eslint-env node, dirigible */
-exports.jasmine_console_reporter = {
+
+var print = function(prefix, result, prettyPrint, severity){
+	severity = console[severity] === undefined ? 'info': severity;
+	var args = [result];
+	if(prettyPrint){
+		args.push(null);
+		args.push(2);
+	}
+	console[severity](prefix + JSON.stringify.apply(this, args));
+}
+
+exports.settings = {
+	
+	prettyPrint: true,
+	
 	specStarted: function(result) {
-		console.info('[Spec started]: ' + JSON.stringify(result));
+		print('[Spec started]: ', result, this.prettyPrint);
 	},
 	specDone: function(result) {
-		console.info('[Spec done]: ' + JSON.stringify(result));
+		print('[Spec done]: ', result, this.prettyPrint);
 	},
 	suiteStarted: function(result) {
-    	console.info('[Suite started]: ' + JSON.stringify(result));
+		print('[Suite started]: ', result, this.prettyPrint);
 	},	
 	suiteDone: function(result) {
-    	console.info('[Suite done]: ' + JSON.stringify(result));
+		print('[Suite done]: ', result, this.prettyPrint);
 	},
 	jasmineStarted: function(suiteInfo) {
-		console.info('[Jasmine started]: ' + JSON.stringify(suiteInfo));
+		print('[Jasmine started]: ', suiteInfo, this.prettyPrint);
 	},
 	jasmineDone: function() {
 		console.info('[Jasmine done]');

@@ -13,16 +13,12 @@ var env = jasmine.getEnv();
 var $$j = j.interface(jasmine, env);
 
 $$j.describe("A suite is just a function", function() {
-   
-    $$j.it("and has a positive case", function() {
-
+	$$j.it("and has a positive case", function() {
 		$$j.expect(false).toBe(true);
 	});
-	
 	$$j.it("and can have a negative case", function() {
 		$$j.expect(false).not.toBe(true);
-	});	  
-
+	});
 });
 
 require("jasmine/runner").run(env);

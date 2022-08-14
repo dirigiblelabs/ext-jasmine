@@ -8,7 +8,7 @@
  * SAP - initial API and implementation
  *******************************************************************************/
 
-var jasmine = require('jasmine/jasmine-2.5.2');
-for (var propertyName in jasmine) {
-	exports[propertyName] = jasmine[propertyName];
+var runner = require('jasmine/test-runner');
+for (var propertyName in runner) {
+    exports[propertyName] = runner[propertyName];
 }

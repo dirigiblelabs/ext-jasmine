@@ -25,7 +25,7 @@ $$j.describe("A suite is just a function", function() {
 
 });
 
-require("jasmine/test-runner").run(env);
+require("jasmine/runner").run(env);
 ```
 The next section will use this example to explore the main steps in using Jasmine for testing server-side scripts.
 
